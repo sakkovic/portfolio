@@ -1,10 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaBookOpen, FaRocket, FaProjectDiagram } from 'react-icons/fa';
+import { FaBookOpen, FaRocket, FaSpinner } from 'react-icons/fa';
 
 const papers = [
   {
     badge: 'IEEE ICC 2025',
+    status: 'published',
     featured: true,
     title: 'Predicting Cyberattack Duration in Next Generation Networks',
     subtitle: 'A Novel Transformer-based Approach',
@@ -14,6 +15,7 @@ const papers = [
   },
   {
     badge: 'IEEE CNSM 2023',
+    status: 'published',
     featured: false,
     title: 'DDoS Attacks Mitigation in 5G-V2X Networks',
     subtitle: 'A Reinforcement Learning-Based Approach',
@@ -21,11 +23,16 @@ const papers = [
     tags: ['Reinforcement Learning', '5G-V2X', 'DDoS', 'OAI'],
     doi: '10.23919/CNSM59352.2023.10327917',
   },
-];
-
-const future = [
-  { icon: <FaRocket />, text: 'Model deployment on the 5G platform for real-world testing' },
-  { icon: <FaProjectDiagram />, text: 'Adaptive federated learning with dynamic client selection for privacy-preserving distributed training across 5G network nodes' },
+  {
+    badge: 'TSNM 2026',
+    status: 'submitted',
+    featured: false,
+    title: 'Adaptive Federated Learning with Dynamic Client Selection for Privacy-Preserving Distributed Training in 5G Networks',
+    subtitle: 'Submitted — Under Review',
+    desc: 'Proposes an adaptive federated learning framework leveraging dynamic client selection strategies to enable privacy-preserving distributed model training across heterogeneous 5G network nodes, improving convergence efficiency while minimising communication overhead.',
+    tags: ['Federated Learning', '5G', 'Privacy', 'Distributed Training', 'Dynamic Selection'],
+    doi: null,
+  },
 ];
 
 export default function Research() {
@@ -45,28 +52,51 @@ export default function Research() {
           {papers.map((p, i) => (
             <motion.div
               key={i}
-              className="rounded-xl border p-7 relative transition-all duration-300 hover:-translate-y-1"
+              className={`rounded-xl border p-7 relative transition-all duration-300 hover:-translate-y-1 ${i === 2 ? 'md:col-span-2' : ''}`}
               style={{
                 background: p.featured
                   ? 'linear-gradient(135deg,var(--bg-card) 0%,#0f1929 100%)'
                   : 'var(--bg-card)',
-                borderColor: p.featured ? 'rgba(99,179,237,0.3)' : 'var(--border)',
+                borderColor: p.status === 'submitted'
+                  ? 'rgba(245,158,11,0.3)'
+                  : p.featured ? 'rgba(99,179,237,0.3)' : 'var(--border)',
               }}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              whileHover={{ borderColor: 'rgba(99,179,237,0.5)' }}
+              whileHover={{
+                borderColor: p.status === 'submitted'
+                  ? 'rgba(245,158,11,0.55)'
+                  : 'rgba(99,179,237,0.5)',
+              }}
             >
-              <span
-                className="inline-block font-mono text-xs font-semibold px-3 py-1 rounded-full text-white mb-4"
-                style={{ background: 'linear-gradient(135deg,var(--accent),var(--accent-2))' }}
-              >
-                {p.badge}
-              </span>
+              <div className="flex items-center gap-3 mb-4">
+                <span
+                  className="inline-block font-mono text-xs font-semibold px-3 py-1 rounded-full text-white"
+                  style={{
+                    background: p.status === 'submitted'
+                      ? 'linear-gradient(135deg,#f59e0b,#d97706)'
+                      : 'linear-gradient(135deg,var(--accent),var(--accent-2))',
+                  }}
+                >
+                  {p.badge}
+                </span>
+                {p.status === 'submitted' && (
+                  <span
+                    className="inline-flex items-center gap-1 font-mono text-xs px-2.5 py-0.5 rounded-full border"
+                    style={{ color: '#f59e0b', borderColor: 'rgba(245,158,11,0.3)', background: 'rgba(245,158,11,0.06)' }}
+                  >
+                    <FaSpinner className="animate-spin" style={{ fontSize: '0.6rem' }} />
+                    Under Review
+                  </span>
+                )}
+              </div>
 
               <h3 className="font-semibold text-base mb-1 leading-snug">{p.title}</h3>
-              <p className="text-xs italic mb-4" style={{ color: 'var(--accent)' }}>{p.subtitle}</p>
+              <p className="text-xs italic mb-4" style={{ color: p.status === 'submitted' ? '#f59e0b' : 'var(--accent)' }}>
+                {p.subtitle}
+              </p>
               <p className="text-sm leading-7 mb-5" style={{ color: 'var(--muted)' }}>{p.desc}</p>
 
               <div className="flex flex-wrap gap-2 mb-5">
@@ -81,34 +111,20 @@ export default function Research() {
                 ))}
               </div>
 
-              <p className="font-mono text-xs flex items-center gap-2" style={{ color: 'var(--muted)' }}>
-                <FaBookOpen style={{ color: 'var(--accent)' }} />
-                DOI: {p.doi}
-              </p>
+              {p.doi ? (
+                <p className="font-mono text-xs flex items-center gap-2" style={{ color: 'var(--muted)' }}>
+                  <FaBookOpen style={{ color: 'var(--accent)' }} />
+                  DOI: {p.doi}
+                </p>
+              ) : (
+                <p className="font-mono text-xs flex items-center gap-2" style={{ color: 'var(--muted)' }}>
+                  <FaRocket style={{ color: '#f59e0b' }} />
+                  DOI pending publication
+                </p>
+              )}
             </motion.div>
           ))}
         </div>
-
-        {/* Future directions */}
-        <motion.div
-          className="rounded-xl border p-6"
-          style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="font-semibold text-sm flex items-center gap-2 mb-5" style={{ color: 'var(--accent)' }}>
-            🧭 Future Research Directions
-          </h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            {future.map((f, i) => (
-              <div key={i} className="flex items-start gap-3 text-sm" style={{ color: 'var(--muted)' }}>
-                <span className="mt-0.5 flex-shrink-0" style={{ color: 'var(--accent)' }}>{f.icon}</span>
-                {f.text}
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
