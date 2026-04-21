@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaVirus, FaBrain, FaUtensils, FaTennisBall, FaStore, FaFileMedical } from 'react-icons/fa';
+import { FaVirus, FaBrain, FaUtensils, FaTableTennis, FaStore, FaFileMedical } from 'react-icons/fa';
 
 type Project = {
   icon: React.ReactNode;
@@ -12,7 +12,7 @@ type Project = {
 
 const freelance: Project[] = [
   {
-    icon: <FaTennisBall className="text-3xl" style={{ color: '#f59e0b' }} />,
+    icon: <FaTableTennis className="text-3xl" style={{ color: '#f59e0b' }} />,
     category: 'Personal Project',
     title: 'Tennis Community Platform',
     desc: 'Full-featured tennis club web application built with React.js and Firebase, featuring a player portal with profile management, a court booking system with real-time availability, and a live chat interface supporting both group channels and direct player-to-player messaging.',
