@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaPython, FaBrain, FaShieldAlt, FaNetworkWired, FaFlask, FaPaperPlane, FaChevronDown } from 'react-icons/fa';
@@ -11,6 +12,9 @@ const orbitDots = [
 ];
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   return (
     <section
       id="hero"
@@ -40,14 +44,18 @@ export default function Hero() {
         </h1>
 
         <div className="flex flex-wrap items-center gap-2 mb-6">
-          {['AI Researcher', 'Security Engineer', 'Developer'].map((r) => (
-            <span
+          {['AI Researcher', 'Security Engineer', 'Developer'].map((r, i) => (
+            <motion.span
               key={r}
-              className="font-mono text-xs px-3 py-1 rounded-full border"
+              className="font-mono text-xs px-3 py-1 rounded-full border cursor-default"
               style={{ color: 'var(--accent)', borderColor: 'var(--border)', background: 'rgba(99,179,237,0.08)' }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 + i * 0.12, duration: 0.4, type: 'spring', stiffness: 300 }}
+              whileHover={{ scale: 1.1, background: 'rgba(99,179,237,0.18)', borderColor: 'var(--accent)' }}
             >
               {r}
-            </span>
+            </motion.span>
           ))}
         </div>
 
@@ -77,11 +85,22 @@ export default function Hero() {
         </div>
 
         <div className="flex gap-10">
-          {[['3', 'Publications'], ['5G', 'Research Focus'], ['50+', 'Students Taught']].map(([num, label]) => (
-            <div key={label} className="text-center">
-              <span className="block font-mono font-bold text-3xl" style={{ color: 'var(--accent)' }}>{num}</span>
+          {[['3', 'Publications'], ['5G', 'Research Focus'], ['50+', 'Students Taught']].map(([num, label], i) => (
+            <motion.div
+              key={label}
+              className="text-center cursor-default"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 + i * 0.12, duration: 0.5 }}
+              whileHover={{ scale: 1.12 }}
+            >
+              <motion.span
+                className="block font-mono font-bold text-3xl"
+                style={{ color: 'var(--accent)' }}
+                whileHover={{ textShadow: '0 0 20px rgba(99,179,237,0.8)' }}
+              >{num}</motion.span>
               <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)' }}>{label}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </motion.div>
@@ -104,7 +123,7 @@ export default function Hero() {
           }}
         >
           <Image
-            src="/hero.png"
+            src="/hero2.png"
             alt="Sakka Mohamed Anis"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center top' }}
@@ -117,10 +136,10 @@ export default function Hero() {
           />
         </div>
 
-        {/* ── Orbital ring system — positioned over the hand area (bottom-left) ── */}
-        <div
+        {/* ── Orbital ring system — client-only to avoid SSR/hydration mismatch ── */}
+        {mounted && <div
           className="absolute"
-          style={{ bottom: 60, left: -30, width: 220, height: 220 }}
+          style={{ bottom: 100, left: 20, width: 220, height: 220 }}
         >
           {/* Outer spinning ring */}
           <motion.div
@@ -202,7 +221,7 @@ export default function Hero() {
               />
             );
           })}
-        </div>
+        </div>}
 
         {/* Subtle glow beneath the orbital */}
         <div

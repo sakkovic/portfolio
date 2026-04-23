@@ -27,12 +27,13 @@ const languages = [
 function SkillCard({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
     <motion.div
-      className="rounded-xl border p-6"
+      className="rounded-xl border p-6 transition-colors duration-300"
       style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
+      whileHover={{ y: -6, borderColor: 'rgba(99,179,237,0.45)', boxShadow: '0 12px 40px rgba(99,179,237,0.1)' }}
     >
       {children}
     </motion.div>
@@ -49,13 +50,17 @@ function GroupTitle({ icon, label }: { icon: React.ReactNode; label: string }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24" style={{ background: 'var(--bg-2)' }}>
+    <motion.section id="skills" className="py-24" style={{ background: 'var(--bg-2)' }}
+      initial={{ opacity: 0, scale: 0.96, y: 40 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
       <div className="max-w-5xl mx-auto px-6">
         <h2
           className="font-bold mb-14 flex items-center gap-3"
           style={{ fontSize: 'clamp(1.6rem,3vw,2.2rem)' }}
         >
-          <span className="font-mono" style={{ color: 'var(--accent)', fontSize: '0.85em' }}>05.</span>
           Skills
           <span className="flex-1 h-px max-w-xs" style={{ background: 'var(--border)' }} />
         </h2>
@@ -164,6 +169,6 @@ export default function Skills() {
           </SkillCard>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

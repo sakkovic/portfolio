@@ -37,13 +37,17 @@ const papers = [
 
 export default function Research() {
   return (
-    <section id="research" className="py-24" style={{ background: 'var(--bg-2)' }}>
+    <motion.section id="research" className="py-24" style={{ background: 'var(--bg-2)' }}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+    >
       <div className="max-w-5xl mx-auto px-6">
         <h2
           className="font-bold mb-14 flex items-center gap-3"
           style={{ fontSize: 'clamp(1.6rem,3vw,2.2rem)' }}
         >
-          <span className="font-mono" style={{ color: 'var(--accent)', fontSize: '0.85em' }}>03.</span>
           Research
           <span className="flex-1 h-px max-w-xs" style={{ background: 'var(--border)' }} />
         </h2>
@@ -126,6 +130,6 @@ export default function Research() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

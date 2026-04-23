@@ -56,13 +56,17 @@ const jobs = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24" style={{ background: 'var(--bg)' }}>
+    <motion.section id="experience" className="py-24" style={{ background: 'var(--bg)' }}
+      initial={{ opacity: 0, x: 60 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+    >
       <div className="max-w-5xl mx-auto px-6">
         <h2
           className="font-bold mb-14 flex items-center gap-3"
           style={{ fontSize: 'clamp(1.6rem,3vw,2.2rem)' }}
         >
-          <span className="font-mono" style={{ color: 'var(--accent)', fontSize: '0.85em' }}>02.</span>
           Experience
           <span className="flex-1 h-px max-w-xs" style={{ background: 'var(--border)' }} />
         </h2>
@@ -125,6 +129,6 @@ export default function Experience() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
