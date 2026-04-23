@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaUniversity, FaEnvelope, FaBrain, FaShieldVirus, FaCode, FaRobot, FaUsers } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaUniversity, FaEnvelope, FaBrain, FaShieldVirus, FaCode, FaRobot } from 'react-icons/fa';
 
 const interests = [
   {
@@ -22,11 +22,6 @@ const interests = [
     icon: <FaCode className="text-2xl mb-3" style={{ color: '#f59e0b' }} />,
     title: 'Development',
     desc: 'Full-stack web apps, ML model deployment, scalable network simulations',
-  },
-  {
-    icon: <FaUsers className="text-2xl mb-3" style={{ color: '#f472b6' }} />,
-    title: 'Travail en Équipe',
-    desc: 'Collaboration on research projects, university partnerships and cross-functional engineering teams',
   },
 ];
 
