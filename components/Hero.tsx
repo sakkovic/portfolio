@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { FaPython, FaBrain, FaShieldAlt, FaNetworkWired, FaFlask, FaPaperPlane, FaChevronDown } from 'react-icons/fa';
 
 const orbitDots = [
-  { icon: <FaPython />,        color: '#3776ab', label: 'Python',    angle: 270 }, // top
-  { icon: <FaBrain />,         color: '#a78bfa', label: 'AI',        angle: 0   }, // right
-  { icon: <FaShieldAlt />,     color: '#34d399', label: 'Security',  angle: 90  }, // bottom  ← hand
-  { icon: <FaNetworkWired />,  color: '#f59e0b', label: 'Networks',  angle: 180 }, // left
+  { icon: <FaPython />, color: '#3776ab', label: 'Python', angle: 270 }, // top
+  { icon: <FaBrain />, color: '#a78bfa', label: 'AI', angle: 0 }, // right
+  { icon: <FaShieldAlt />, color: '#34d399', label: 'Security', angle: 90 }, // bottom  ← hand
+  { icon: <FaNetworkWired />, color: '#f59e0b', label: 'Networks', angle: 180 }, // left
 ];
 
 export default function Hero() {
@@ -31,7 +31,7 @@ export default function Hero() {
           Hello, World! I&apos;m
         </p>
         <h1
-          className="font-bold leading-tight mb-4"
+          className="font-bold leading-tight mb-2"
           style={{
             fontSize: 'clamp(2.4rem,5vw,4rem)',
             background: 'linear-gradient(135deg,#fff 0%,#63b3ed 55%,#7c3aed 100%)',
@@ -42,6 +42,12 @@ export default function Hero() {
         >
           Sakka Mohamed Anis
         </h1>
+        <p className="font-semibold mb-4" style={{ color: 'var(--accent)', fontSize: '1.05rem' }}>
+          IT Engineer
+        </p>
+        <p className="mb-5 leading-7 text-sm" style={{ color: 'var(--muted)' }}>
+          AI for network security and decision-making in 5G/cloud systems.
+        </p>
 
         <div className="flex flex-wrap items-center gap-2 mb-6">
           {['AI Researcher', 'Security Engineer', 'Developer'].map((r, i) => (
@@ -64,7 +70,7 @@ export default function Hero() {
           Building the intersection of{' '}
           <span style={{ color: 'var(--accent)', fontWeight: 500 }}>AI</span>,{' '}
           <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Security</span> &amp;{' '}
-          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Networks</span>.
+          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Cloud</span>.
         </p>
 
         <div className="flex flex-wrap gap-4 mb-12">
@@ -85,7 +91,7 @@ export default function Hero() {
         </div>
 
         <div className="flex gap-10">
-          {[['3', 'Publications'], ['5G', 'Research Focus'], ['50+', 'Students Taught']].map(([num, label], i) => (
+          {[['3', 'Publications'], ['AI for 5G Security', 'Research Focus'], ['50+', 'Students Taught']].map(([num, label], i) => (
             <motion.div
               key={label}
               className="text-center cursor-default"

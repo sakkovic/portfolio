@@ -18,8 +18,8 @@ const academic: Project[] = [
     accentColor: '#34d399',
     category: 'Academic',
     title: 'Medical Document Summarisation with LLMs',
-    desc: 'Developed an NLP pipeline for automated summarisation of clinical and medical documents, leveraging large language models combined with expert annotation workflows. Generates accurate, structured summaries from complex medical reports.',
-    tags: ['NLP', 'LLMs', 'Annotation', 'Medical AI', 'Summarisation'],
+    desc: 'Developed an NLP pipeline for automated summarisation of clinical and medical documents, leveraging large language models combined with expert annotation workflows on the INCEPTION platform. Generates accurate, structured summaries from complex medical reports.',
+    tags: ['NLP', 'LLMs', 'INCEPTION', 'Annotation', 'Medical AI', 'Summarisation'],
   },
   {
     icon: <FaVirus className="text-3xl" style={{ color: '#63b3ed' }} />,

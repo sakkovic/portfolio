@@ -1,22 +1,32 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaUniversity, FaEnvelope, FaBrain, FaShieldVirus, FaCode } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaUniversity, FaEnvelope, FaBrain, FaShieldVirus, FaCode, FaRobot, FaUsers } from 'react-icons/fa';
 
 const interests = [
   {
     icon: <FaBrain className="text-2xl mb-3" style={{ color: 'var(--accent)' }} />,
     title: 'Artificial Intelligence',
-    desc: 'Deep learning, transformers, reinforcement learning for real-world network problems',
+    desc: 'Deep learning, LLMs, agents & automation, transformers and reinforcement learning for real-world problems',
   },
   {
-    icon: <FaShieldVirus className="text-2xl mb-3" style={{ color: 'var(--accent)' }} />,
-    title: 'Cybersecurity',
-    desc: 'Attack detection, DDoS mitigation, privacy-preserving federated learning in 5G',
+    icon: <FaShieldVirus className="text-2xl mb-3" style={{ color: '#34d399' }} />,
+    title: 'AI for Cyber Security',
+    desc: 'Intrusion detection, DDoS mitigation, privacy-preserving federated learning in 5G/O-RAN environments',
   },
   {
-    icon: <FaCode className="text-2xl mb-3" style={{ color: 'var(--accent)' }} />,
+    icon: <FaRobot className="text-2xl mb-3" style={{ color: '#a78bfa' }} />,
+    title: 'Agents & Automation',
+    desc: 'Building autonomous AI agents, LLM pipelines and workflow automation with tools like N8N',
+  },
+  {
+    icon: <FaCode className="text-2xl mb-3" style={{ color: '#f59e0b' }} />,
     title: 'Development',
     desc: 'Full-stack web apps, ML model deployment, scalable network simulations',
+  },
+  {
+    icon: <FaUsers className="text-2xl mb-3" style={{ color: '#f472b6' }} />,
+    title: 'Travail en Équipe',
+    desc: 'Collaboration on research projects, university partnerships and cross-functional engineering teams',
   },
 ];
 

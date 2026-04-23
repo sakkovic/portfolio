@@ -11,11 +11,17 @@ const programmingSkills = [
 const aiSkills = [
   'PyTorch', 'TensorFlow', 'Scikit-learn', 'OpenAI Gym',
   'StableBaselines', 'Librosa', 'Transformers', 'Federated Learning', 'RL',
+  'Gen AI', 'N8N', 'LLMs', 'Agents & Automation',
+  'Time-Series & Sequence Modeling', 'Classification · Regression · Clustering',
+  'Supervised & Unsupervised Learning', 'Meta-Learning',
+  'Data Preprocessing & Feature Engineering', 'Handling Imbalanced Datasets',
+  'Model Deployment (Docker, APIs)', 'Experiment Tracking & Reproducibility',
 ];
 
 const networkSkills = [
   '5G / OAI', 'SDN / NDN', 'Cisco Packet Tracer',
   'Wireshark', 'Mininet', 'DDoS Mitigation', 'Network Slicing', 'V2X',
+  'IDS using ML/DL', 'Security in 5G / O-RAN',
 ];
 
 const languages = [
