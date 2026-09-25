@@ -2,6 +2,26 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaUniversity, FaLinkedin, FaPhone, FaPaperPlane, FaCheck } from 'react-icons/fa';
+import { useLang } from '@/lib/i18n';
+
+const text = {
+  en: {
+    title: "Let's Connect",
+    intro: "Whether you're interested in research collaboration, have a project idea, or just want to say hi — my inbox is always open.",
+    name: 'Your Name',
+    message: 'Your message...',
+    send: 'Send Message',
+    sent: 'Message Sent!',
+  },
+  fr: {
+    title: 'Restons en contact',
+    intro: 'Que ce soit pour une collaboration de recherche, une idée de projet ou simplement pour dire bonjour — ma boîte de réception est toujours ouverte.',
+    name: 'Votre nom',
+    message: 'Votre message...',
+    send: 'Envoyer le message',
+    sent: 'Message envoyé !',
+  },
+};
 
 const contactLinks = [
   { icon: <FaEnvelope />, label: 'anis.federe@gmail.com', href: 'mailto:anis.federe@gmail.com' },
@@ -12,6 +32,8 @@ const contactLinks = [
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  const { lang } = useLang();
+  const t = text[lang];
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -21,7 +43,7 @@ export default function Contact() {
   };
 
   return (
-    <motion.section id="contact" className="py-24" style={{ background: 'var(--bg)' }}
+    <motion.section id="contact" className="py-24" style={{ background: 'var(--bg-2)' }}
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -44,10 +66,9 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold mb-3">Let&apos;s Connect</h3>
+            <h3 className="text-2xl font-bold mb-3">{t.title}</h3>
             <p className="mb-8 leading-7" style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>
-              Whether you&apos;re interested in research collaboration, have a project idea, or just want to say
-              hi — my inbox is always open.
+              {t.intro}
             </p>
 
             <div className="flex flex-col gap-3">
@@ -88,7 +109,7 @@ export default function Contact() {
               <input
                 key={field}
                 type={field === 'Email' ? 'email' : 'text'}
-                placeholder={field === 'Email' ? 'your@email.com' : 'Your Name'}
+                placeholder={field === 'Email' ? 'your@email.com' : t.name}
                 required
                 className="w-full px-4 py-3 rounded-lg border text-sm outline-none transition-all duration-200 focus:ring-2"
                 style={{
@@ -110,7 +131,7 @@ export default function Contact() {
 
             <textarea
               rows={5}
-              placeholder="Your message..."
+              placeholder={t.message}
               required
               className="w-full px-4 py-3 rounded-lg border text-sm outline-none resize-none transition-all duration-200"
               style={{
@@ -137,7 +158,7 @@ export default function Contact() {
                 color: 'var(--bg)',
               }}
             >
-              {sent ? <><FaCheck /> Message Sent!</> : <><FaPaperPlane /> Send Message</>}
+              {sent ? <><FaCheck /> {t.sent}</> : <><FaPaperPlane /> {t.send}</>}
             </button>
           </motion.form>
         </div>

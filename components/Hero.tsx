@@ -3,6 +3,34 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaPython, FaBrain, FaShieldAlt, FaNetworkWired, FaFlask, FaPaperPlane, FaChevronDown } from 'react-icons/fa';
+import { useLang } from '@/lib/i18n';
+
+const text = {
+  en: {
+    hello: "Hello, World! I'm",
+    role: 'ICT Engineer · AI & Cybersecurity',
+    tagline: 'AI-driven security and decision-making for 5G/6G and cloud networks.',
+    chips: ['AI Engineer', 'Security Engineer', 'Researcher', 'Developer'],
+    lead: 'Predicting and mitigating cyberattacks in 5G/6G networks with deep & federated learning.',
+    building: 'Building the intersection of',
+    and: '&',
+    viewResearch: 'View Research',
+    contact: 'Get in Touch',
+    stats: [['3', 'IEEE Publications'], ['AI for 5G Security', 'Research Focus'], ['50+', 'Students Taught']],
+  },
+  fr: {
+    hello: 'Bonjour ! Je suis',
+    role: 'Ingénieur TIC · IA & Cybersécurité',
+    tagline: 'Sécurité et prise de décision par l’IA pour les réseaux 5G/6G et le cloud.',
+    chips: ['Ingénieur IA', 'Ingénieur sécurité', 'Chercheur', 'Développeur'],
+    lead: 'Prédire et atténuer les cyberattaques dans les réseaux 5G/6G grâce au deep learning et au federated learning.',
+    building: 'Au croisement de',
+    and: 'et',
+    viewResearch: 'Voir mes recherches',
+    contact: 'Me contacter',
+    stats: [['3', 'Publications IEEE'], ['IA pour la sécurité 5G', 'Axe de recherche'], ['50+', 'Étudiants encadrés']],
+  },
+};
 
 const orbitDots = [
   { icon: <FaPython />, color: '#3776ab', label: 'Python', angle: 270 }, // top
@@ -14,6 +42,8 @@ const orbitDots = [
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  const { lang } = useLang();
+  const t = text[lang];
 
   return (
     <section
@@ -28,7 +58,7 @@ export default function Hero() {
         transition={{ duration: 0.7 }}
       >
         <p className="font-mono text-sm mb-3" style={{ color: 'var(--accent)' }}>
-          Hello, World! I&apos;m
+          {t.hello}
         </p>
         <h1
           className="font-bold leading-tight mb-2"
@@ -43,14 +73,14 @@ export default function Hero() {
           Sakka Mohamed Anis
         </h1>
         <p className="font-semibold mb-4" style={{ color: 'var(--accent)', fontSize: '1.05rem' }}>
-          IT Engineer
+          {t.role}
         </p>
         <p className="mb-5 leading-7 text-sm" style={{ color: 'var(--muted)' }}>
-          AI for network security and decision-making in 5G/cloud systems.
+          {t.tagline}
         </p>
 
         <div className="flex flex-wrap items-center gap-2 mb-6">
-          {['AI Researcher', 'Security Engineer', 'Developer'].map((r, i) => (
+          {t.chips.map((r, i) => (
             <motion.span
               key={r}
               className="font-mono text-xs px-3 py-1 rounded-full border cursor-default"
@@ -66,11 +96,11 @@ export default function Hero() {
         </div>
 
         <p className="mb-8 leading-8" style={{ color: 'var(--muted)', fontSize: '1.02rem' }}>
-          Predicting cyber-attacks in 5G networks with deep learning.<br />
-          Building the intersection of{' '}
-          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>AI</span>,{' '}
-          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Security</span> &amp;{' '}
-          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Cloud</span>.
+          {t.lead}<br />
+          {t.building}{' '}
+          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>{lang === 'fr' ? 'l’IA' : 'AI'}</span>,{' '}
+          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>{lang === 'fr' ? 'la sécurité' : 'Security'}</span> {t.and}{' '}
+          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>{lang === 'fr' ? 'du cloud' : 'Cloud'}</span>.
         </p>
 
         <div className="flex flex-wrap gap-4 mb-12">
@@ -79,21 +109,21 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
             style={{ background: 'var(--accent)', color: 'var(--bg)' }}
           >
-            <FaFlask /> View Research
+            <FaFlask /> {t.viewResearch}
           </a>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm border transition-all duration-200 hover:-translate-y-0.5"
             style={{ color: 'var(--accent)', borderColor: 'var(--accent)', background: 'transparent' }}
           >
-            <FaPaperPlane /> Get in Touch
+            <FaPaperPlane /> {t.contact}
           </a>
         </div>
 
         <div className="flex gap-10">
-          {[['3', 'Publications'], ['AI for 5G Security', 'Research Focus'], ['50+', 'Students Taught']].map(([num, label], i) => (
+          {t.stats.map(([num, label], i) => (
             <motion.div
-              key={label}
+              key={i}
               className="text-center cursor-default"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

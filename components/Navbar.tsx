@@ -1,18 +1,61 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLang, type Lang } from '@/lib/i18n';
 
-const links = [
-  { label: 'About',      href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Research',   href: '#research' },
-  { label: 'Projects',   href: '#projects' },
-  { label: 'Skills',     href: '#skills' },
-];
+const navLinks = {
+  en: [
+    { label: 'About',      href: '#about' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Education',  href: '#education' },
+    { label: 'Research',   href: '#research' },
+    { label: 'Projects',   href: '#projects' },
+    { label: 'Skills',     href: '#skills' },
+  ],
+  fr: [
+    { label: 'À propos',    href: '#about' },
+    { label: 'Expérience',  href: '#experience' },
+    { label: 'Formation',   href: '#education' },
+    { label: 'Recherche',   href: '#research' },
+    { label: 'Projets',     href: '#projects' },
+    { label: 'Compétences', href: '#skills' },
+  ],
+};
+
+function LangToggle() {
+  const { lang, setLang } = useLang();
+  return (
+    <div
+      className="flex items-center rounded-full border p-0.5 font-mono"
+      style={{ borderColor: 'var(--border)', fontSize: '0.65rem' }}
+      role="group"
+      aria-label="Language"
+    >
+      {(['en', 'fr'] as Lang[]).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className="px-2 py-0.5 rounded-full uppercase font-semibold transition-colors duration-200"
+          style={
+            lang === l
+              ? { background: 'var(--accent)', color: 'var(--bg)' }
+              : { background: 'transparent', color: 'var(--muted)' }
+          }
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { lang } = useLang();
+  const links = navLinks[lang];
+  const contactLabel = 'Contact';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -46,8 +89,9 @@ export default function Navbar() {
         <span style={{ color: 'var(--accent)' }}>/&gt;</span>
       </motion.a>
 
+      <div className="flex items-center gap-5 md:gap-7">
       {/* Desktop links */}
-      <ul className="hidden md:flex gap-8 items-center">
+      <ul className="hidden md:flex gap-7 items-center">
         {links.map((l, i) => (
           <motion.li
             key={l.href}
@@ -90,10 +134,12 @@ export default function Navbar() {
             whileTap={{ scale: 0.96 }}
             transition={{ type: 'spring', stiffness: 350, damping: 18 }}
           >
-            Contact
+            {contactLabel}
           </motion.a>
         </motion.li>
       </ul>
+
+      <LangToggle />
 
       {/* Hamburger */}
       <motion.button
@@ -118,6 +164,7 @@ export default function Navbar() {
           />
         ))}
       </motion.button>
+      </div>
 
       {/* Mobile menu */}
       <AnimatePresence>
@@ -130,7 +177,7 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
           >
-            {[...links, { label: 'Contact', href: '#contact' }].map((l, i) => (
+            {[...links, { label: contactLabel, href: '#contact' }].map((l, i) => (
               <motion.a
                 key={l.href}
                 href={l.href}
