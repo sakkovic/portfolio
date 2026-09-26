@@ -8,7 +8,6 @@ type Paper = {
   status: 'published' | 'accepted';
   featured: boolean;
   title: string;
-  subtitle: string;
   desc: { en: string; fr: string };
   tags: string[];
   doi: string | null;
@@ -20,8 +19,7 @@ const papers: Paper[] = [
     badge: 'IEEE TNSM 2026',
     status: 'accepted',
     featured: true,
-    title: 'FML-AD: A Federated Learning Framework with Meta-Model Refinement',
-    subtitle: 'for Cyberattack Duration Prediction in 5G O-RAN',
+    title: 'FML-AD: A Federated Learning Framework with Meta-Model Refinement for Cyberattack Duration Prediction in 5G O-RAN',
     desc: {
       en: 'Proposes an adaptive, resource-efficient federated learning framework with dynamic client selection for privacy-preserving cyberattack-duration prediction across distributed 5G O-RAN nodes. An XGBoost-based meta-model refinement layer corrects errors caused by the gap between training and deployment domains, while cutting training time by ~70% versus centralized training.',
       fr: 'Propose un framework de federated learning adaptatif et économe en ressources, avec sélection dynamique des clients, pour prédire la durée des cyberattaques sur des nœuds 5G O-RAN distribués tout en préservant la confidentialité. Une couche de raffinement par méta-modèle XGBoost corrige les erreurs dues au décalage entre les domaines d’entraînement et de déploiement, et le temps d’entraînement est réduit d’environ 70 % par rapport à l’approche centralisée.',
@@ -34,8 +32,7 @@ const papers: Paper[] = [
     badge: 'IEEE ICC 2025',
     status: 'published',
     featured: false,
-    title: 'Predicting Cyberattack Duration in Next Generation Networks',
-    subtitle: 'A Novel Transformer-based Approach',
+    title: 'Predicting Cyberattack Duration in Next Generation Networks: A Novel Transformer-based Approach',
     desc: {
       en: 'Developed a Transformer-based deep learning model to predict the duration of common cyberattacks on 5G networks from network traffic data (UNSW-NB15), achieving up to 60% MAE reduction vs. LSTM. Enables improved mitigation strategies and decision-making by understanding attacker behavior.',
       fr: 'Développement d’un modèle de deep learning basé sur les Transformers pour prédire la durée des cyberattaques courantes dans les réseaux 5G à partir de données de trafic (UNSW-NB15), avec jusqu’à 60 % de réduction du MAE par rapport au LSTM. Permet d’améliorer les stratégies de mitigation et la prise de décision en comprenant le comportement des attaquants.',
@@ -48,8 +45,7 @@ const papers: Paper[] = [
     badge: 'IFIP/IEEE CNSM 2023',
     status: 'published',
     featured: false,
-    title: 'DDoS Attacks Mitigation in 5G-V2X Networks',
-    subtitle: 'A Reinforcement Learning-Based Approach',
+    title: 'DDoS Attacks Mitigation in 5G-V2X Networks: A Reinforcement Learning-Based Approach',
     desc: {
       en: 'Implemented an RL-based framework to detect and mitigate DDoS attacks in 5G-V2X networks, leveraging sinkhole slicing. Validated on a real OpenAirInterface 5G platform with live attack simulations, with an average attack-duration estimation error below 3.2%.',
       fr: 'Mise en œuvre d’un framework de reinforcement learning pour détecter et atténuer les attaques DDoS dans les réseaux 5G-V2X grâce au sinkhole slicing. Validé sur une plateforme 5G OpenAirInterface réelle avec simulations d’attaques, avec une erreur moyenne d’estimation de la durée des attaques inférieure à 3,2 %.',
@@ -119,10 +115,7 @@ export default function Research() {
                 )}
               </div>
 
-              <h3 className="font-semibold text-base mb-1 leading-snug">{p.title}</h3>
-              <p className="text-xs italic mb-4" style={{ color: p.status === 'accepted' ? '#34d399' : 'var(--accent)' }}>
-                {p.subtitle}
-              </p>
+              <h3 className="font-semibold text-base mb-4 leading-snug">{p.title}</h3>
               <p className="text-sm leading-7 mb-5 flex-1" style={{ color: 'var(--muted)' }}>{p.desc[lang]}</p>
 
               <div className="flex flex-wrap gap-2 mb-5">
