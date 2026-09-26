@@ -7,7 +7,7 @@ const text = {
   en: {
     heading: 'About Me',
     passions: 'Passions',
-    meta: ['Montréal, QC, Canada', 'ÉTS — M.Sc.A. in IT Engineering (Thesis)', 'anis.federe@gmail.com'],
+    meta: ['Montréal, QC, Canada', 'ÉTS — M.Sc.A. in IT Engineering (Thesis)', 'anis.federe@gmail.com', 'mohamed-anis.sakka.1@ens.etsmtl.ca'],
     interests: [
       { title: 'Artificial Intelligence', desc: 'Deep learning, LLMs, RAG, transformers, federated and reinforcement learning for real-world problems' },
       { title: 'AI for Cyber Security', desc: 'Intrusion detection, DDoS & jamming mitigation, privacy-preserving federated learning in 5G/O-RAN environments' },
@@ -18,7 +18,7 @@ const text = {
   fr: {
     heading: 'À propos',
     passions: 'Passions',
-    meta: ['Montréal, QC, Canada', 'ÉTS — Maîtrise avec mémoire (M. Sc. A.) en génie des TI', 'anis.federe@gmail.com'],
+    meta: ['Montréal, QC, Canada', 'ÉTS — Maîtrise avec mémoire (M. Sc. A.) en génie des TI', 'anis.federe@gmail.com', 'mohamed-anis.sakka.1@ens.etsmtl.ca'],
     interests: [
       { title: 'Intelligence artificielle', desc: 'Deep learning, LLMs, RAG, Transformers, federated et reinforcement learning appliqués à des problèmes concrets' },
       { title: 'IA pour la cybersécurité', desc: 'Détection d’intrusions, mitigation DDoS et brouillage, federated learning respectueux de la vie privée en environnement 5G/O-RAN' },
@@ -35,7 +35,7 @@ const interestIcons = [
   <FaCode key="dev" className="text-2xl mb-3" style={{ color: '#f59e0b' }} />,
 ];
 
-const metaIcons = [<FaMapMarkerAlt key="loc" />, <FaUniversity key="uni" />, <FaEnvelope key="mail" />];
+const metaIcons = [<FaMapMarkerAlt key="loc" />, <FaUniversity key="uni" />, <FaEnvelope key="mail" />, <FaEnvelope key="ets-mail" />];
 
 const paragraphs = {
   en: [
